@@ -172,7 +172,14 @@
                 android:layout_weight="1"
                 android:background="#000000"
             >
-                </FrameLayout>
+
+                <SeekBar
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/seekBar"
+
+                    />
+            </FrameLayout>
         </LinearLayout>
 
 
