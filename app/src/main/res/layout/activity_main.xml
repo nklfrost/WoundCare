@@ -231,7 +231,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="7dp"
-                    android:layout_marginEnd="7dp" />
+                    android:layout_marginEnd="7dp"
+                    android:textColor="@color/colorPrimary" />
 
                 <Button
                     android:layout_width="50dp"
@@ -268,7 +269,26 @@
                 <Button
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:id="@+id/button12"
+                    android:id="@+id/button9"
+                    android:background="@drawable/magglass"
+                    android:padding="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingEnd="5dp"
+                    android:paddingRight="5dp"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:layout_below="@+id/textView"
+                    android:layout_alignBottom="@+id/button12"
+                    android:layout_alignLeft="@+id/textView"
+                    android:layout_alignStart="@+id/textView"
+                    android:layout_alignRight="@+id/textView"
+                    android:layout_alignEnd="@+id/textView" />
+
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/button14"
                     android:background="@drawable/medchart"
                     android:padding="5dp"
                     android:paddingBottom="5dp"
@@ -278,8 +298,8 @@
                     android:paddingLeft="5dp"
                     android:paddingTop="5dp"
                     android:layout_below="@+id/button"
-                    android:layout_toRightOf="@+id/button"
-                    android:layout_toEndOf="@+id/button" />
+                    android:layout_toRightOf="@+id/button4"
+                    android:layout_toEndOf="@+id/button4" />
 
                 <Button
                     android:layout_width="50dp"
@@ -293,28 +313,9 @@
                     android:paddingStart="5dp"
                     android:paddingLeft="5dp"
                     android:paddingTop="5dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/button7"
-                    android:layout_toEndOf="@+id/button7" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button9"
-                    android:background="@drawable/magglass"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/textView"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignBottom="@+id/button12"
-                    android:layout_alignLeft="@+id/textView"
-                    android:layout_alignStart="@+id/textView" />
+                    android:layout_below="@+id/button3"
+                    android:layout_toRightOf="@+id/button"
+                    android:layout_toEndOf="@+id/button" />
 
 
             </RelativeLayout>
@@ -332,7 +333,7 @@
                     android:id="@+id/seekBar"
 
                     android:max="3"
-                    android:progress="1" />
+                    android:progress="0" />
             </FrameLayout>
         </LinearLayout>
 

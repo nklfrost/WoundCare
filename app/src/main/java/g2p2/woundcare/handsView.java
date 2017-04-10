@@ -15,12 +15,14 @@ import android.view.View;
  */
 
 public class handsView extends View {
-    Bitmap test;
+    Bitmap test,test_2;
+    static int what = 0;
 
     public handsView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        test = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.handstemp),300,300,true);
+        test = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.test1),200,200,true);
+        test_2= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.handstemp),200,200,true);
 
                 //BitmapFactory.decodeResource(getResources(),R.drawable.handstemp);
     }
@@ -31,6 +33,14 @@ public class handsView extends View {
         //myStyle.setColor(0xff101010);
         //canvas.drawColor(Color.RED);
         myStyle.setColor(Color.rgb(65,176,176));
-        canvas.drawBitmap(test,0,0,myStyle);
+        switch (what){
+            case 0:
+                break;
+            case 1: canvas.drawBitmap(test,0,0,myStyle);
+                break;
+            case 2: canvas.drawBitmap(test_2,0,0,myStyle);
+                break;
+        }
+        //canvas.drawBitmap(test,0,0,myStyle);
     }
 }

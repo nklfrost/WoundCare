@@ -37,25 +37,23 @@ public class WoundView extends View {
     public boolean onTouchEvent(MotionEvent e) {
 
             //Trying to do the move event thing...
-
-            System.out.println(e.getAction());
+        if(handsView.what==0) {
             if (e.getAction() == 0) {
                 if (X != currentX) {
                     currentX = X;
                     currentY = Y;
                 }
-                startX =  e.getX();
-                startY =  e.getY();
+                startX = e.getX();
+                startY = e.getY();
             } else {
                 stopX = currentX + e.getX();
                 stopY = currentY + e.getY();
                 X = stopX - startX;
                 Y = stopY - startY;
             }
-            System.out.println(startX - X);
 
             this.invalidate(); //refreshes the
-
+        }
         return true;
     }
 }
