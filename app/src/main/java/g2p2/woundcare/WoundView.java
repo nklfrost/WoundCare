@@ -18,7 +18,6 @@ public class WoundView extends View {
     Bitmap wound;
     Paint coolStyle;
     float X,Y,startX,startY,stopX,stopY,currentX,currentY;
-    int lasttime=0;
     public WoundView(Context c, AttributeSet as){
         super(c,as);
         wound = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault);
@@ -36,7 +35,7 @@ public class WoundView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        if (lasttime - System.currentTimeMillis() < 100) {
+
             //Trying to do the move event thing...
 
             System.out.println(e.getAction());
@@ -45,27 +44,18 @@ public class WoundView extends View {
                     currentX = X;
                     currentY = Y;
                 }
-                startX = currentX + e.getX();
-                startY = currentY + e.getY();
+                startX =  e.getX();
+                startY =  e.getY();
             } else {
-                //System.out.println("action_down: "+MotionEvent.ACTION_DOWN);
                 stopX = currentX + e.getX();
                 stopY = currentY + e.getY();
                 X = stopX - startX;
                 Y = stopY - startY;
             }
-        /*
-        if(e.getAction()==0){
-            currentY = Y;
-            currentX = X;
-        }
-        */
             System.out.println(startX - X);
 
-            this.invalidate();
+            this.invalidate(); //refreshes the
 
-            lasttime=(int)System.currentTimeMillis();
-        }
         return true;
     }
 }
