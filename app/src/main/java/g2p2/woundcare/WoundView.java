@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 /**
  * Created by Niklas on 4/7/2017.
  */
@@ -17,7 +19,11 @@ import android.view.View;
 public class WoundView extends View {
     Bitmap wound;
     Paint coolStyle;
-    float X,Y,startX,startY,stopX,stopY,currentX,currentY;
+    float X,Y,startX,startY,stopX,stopY,currentX,currentY,paintX,paintY;
+    ArrayList<Float> paintXs = new ArrayList<Float>();
+    ArrayList<Float> paintYs = new ArrayList<Float>();
+
+
     public WoundView(Context c, AttributeSet as){
         super(c,as);
         wound = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault);
@@ -30,6 +36,9 @@ public class WoundView extends View {
     @Override
     protected void onDraw(Canvas c){
         c.drawBitmap(wound,X,Y,coolStyle); //draws the wound
+        for(int i=0;i<paintXs.size();i++){
+            c.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
+        }
     }
 
     @Override
@@ -51,6 +60,15 @@ public class WoundView extends View {
                 Y = stopY - startY;
             }
 
+            this.invalidate(); //refreshes the view ("this" view).
+        }
+        else if(handsView.what==1){
+            if (paintX!=e.getX() | paintY!=e.getY()){
+                paintXs.add(e.getX());
+                paintYs.add(e.getY());
+            }
+            paintX=e.getX();
+            paintY=e.getY();
             this.invalidate(); //refreshes the view ("this" view).
         }
         return true;
