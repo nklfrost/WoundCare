@@ -29,15 +29,14 @@ public class WoundView extends View {
 
     @Override
     protected void onDraw(Canvas c){
-        c.drawBitmap(wound,X,Y,coolStyle);
-        c.drawCircle(X,Y,10,coolStyle);
+        c.drawBitmap(wound,X,Y,coolStyle); //draws the wound
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
 
-            //Trying to do the move event thing...
-        if(handsView.what==0) {
+
+        if(handsView.what==0) {             //the following code moves the wound image.
             if (e.getAction() == 0) {
                 if (X != currentX) {
                     currentX = X;
@@ -52,7 +51,7 @@ public class WoundView extends View {
                 Y = stopY - startY;
             }
 
-            this.invalidate(); //refreshes the
+            this.invalidate(); //refreshes the view ("this" view).
         }
         return true;
     }
