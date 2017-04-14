@@ -39,20 +39,19 @@ public class WoundView extends View {
         X=0;
         Y=0;
         coolStyle.setColor(Color.BLACK);
+        coolStyle.setStrokeWidth(90);
         masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
         //masked.setColor(Color.TRANSPARENT);
+        bitMaker();
     }
 
     @Override
     protected void onDraw(Canvas c){
 
-        bitMaker();
+        //bitMaker();
 
         c.drawBitmap(wound,X,Y,coolStyle); //draws the wound
 
-        for(int i=0;i<paintXs.size();i++){
-            //c.drawCircle(paintXs.get(i)+X,paintYs.get(i)+Y,50,coolStyle);
-        }
         c.drawBitmap(woundAplha,X,Y,masked);
         //c.drawBitmap(woundClean,X,Y,masked);
 
@@ -64,9 +63,9 @@ public class WoundView extends View {
         Canvas canvas = new Canvas(woundAplha);
         //canvas.drawBitmap(wound,0,0,coolStyle);
         for(int i=0;i<paintXs.size();i++){
-            canvas.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
+            //canvas.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
             if (i>1){
-                //canvas.drawp make a path from point to point
+                canvas.drawLine(paintXs.get(i-1),paintYs.get(i-1),paintXs.get(i),paintYs.get(i),coolStyle);
             }
         }
         canvas.drawBitmap(woundClean,0,0,masked);
@@ -106,7 +105,7 @@ public class WoundView extends View {
             paintX=e.getX();
             paintY=e.getY();
 
-
+            bitMaker();
             this.invalidate(); //refreshes the view ("this" view).
         }
         return true;
