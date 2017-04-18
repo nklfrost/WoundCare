@@ -68,7 +68,7 @@ public class WoundView extends View {
                 canvas.drawLine(paintXs.get(i-1),paintYs.get(i-1),paintXs.get(i),paintYs.get(i),coolStyle);
             }
         }
-        canvas.drawBitmap(woundClean,0,0,masked);
+        canvas.drawBitmap(woundClean,0,0,masked);//wow
     }
 
     @Override
