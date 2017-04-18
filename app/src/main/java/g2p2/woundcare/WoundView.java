@@ -52,7 +52,7 @@ public class WoundView extends View {
 
         c.drawBitmap(wound,X,Y,coolStyle); //draws the wound
 
-        c.drawBitmap(woundAplha,X,Y,masked);
+        c.drawBitmap(woundAplha,X,Y,coolStyle);
         //c.drawBitmap(woundClean,X,Y,masked);
 
     }
@@ -64,12 +64,11 @@ public class WoundView extends View {
         //canvas.drawBitmap(wound,0,0,coolStyle);
         for(int i=0;i<paintXs.size();i++){
             //canvas.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
-            if (i>1){
+            if (i>1 && paintXs.get(i-1)!=0 && paintYs.get(i-1)!=0 && paintXs.get(i)!=0 && paintYs.get(i)!=0){
                 canvas.drawLine(paintXs.get(i-1),paintYs.get(i-1),paintXs.get(i),paintYs.get(i),coolStyle);
             }
         }
         canvas.drawBitmap(woundClean,0,0,masked);
-        //masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
     }
 
     @Override
@@ -96,9 +95,12 @@ public class WoundView extends View {
         else if(handsView.what==1){
 
 
+            if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
+                paintXs.add((float) 0);
+                paintYs.add((float) 0);
+            }
 
-
-            if (paintX!=e.getX() | paintY!=e.getY()){
+            else if (paintX!=e.getX() | paintY!=e.getY()){
                 paintXs.add(e.getX()-X);
                 paintYs.add(e.getY()-Y);
             }
@@ -107,6 +109,9 @@ public class WoundView extends View {
 
             bitMaker();
             this.invalidate(); //refreshes the view ("this" view).
+        }
+        else if(handsView.what==2){
+            System.out.println("2nd tool");
         }
         return true;
     }

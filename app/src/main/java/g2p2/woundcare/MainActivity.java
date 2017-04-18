@@ -29,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
+
+        final Button button2 = (Button) findViewById(R.id.button6);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==2){
+                    handsView.what=0;
+                } else handsView.what=2;
+                findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+
+
     }
 
 
