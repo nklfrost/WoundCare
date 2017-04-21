@@ -32,8 +32,6 @@ public class WoundView extends View {
         super(c,as);
         wound = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault);
         woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
-        //woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
-        //woundAplha = BitmapFactory.;
         coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         masked = new Paint(Paint.ANTI_ALIAS_FLAG);
         X=0;
@@ -41,23 +39,70 @@ public class WoundView extends View {
         coolStyle.setColor(Color.BLACK);
         coolStyle.setStrokeWidth(90);
         masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
-        //masked.setColor(Color.TRANSPARENT);
+
         bitMaker();
     }
 
     @Override
     protected void onDraw(Canvas c){
 
-        //bitMaker();
+
 
         c.drawBitmap(wound,X,Y,coolStyle); //draws the wound
 
-        c.drawBitmap(woundAplha,X,Y,coolStyle);
-        //c.drawBitmap(woundClean,X,Y,masked);
-
+        c.drawBitmap(woundAplha,X,Y,coolStyle); //draws whatever is clean on top.
     }
 
-    void bitMaker(){
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+
+
+        if(handsView.what==0) {             //the following code moves the wound image.
+            moveTool(e);
+        }
+        else if(handsView.what==1){
+            gauzeTool(e);
+
+        }
+        else if(handsView.what==2){
+            //put method here.
+        }
+        else if(handsView.what==3){
+            //put method here.
+        }
+        return true;
+    }
+    public void moveTool(MotionEvent e){
+        if (e.getAction() == 0) {
+            if (X != currentX) {
+                currentX = X;
+                currentY = Y;
+            }
+            startX = e.getX();
+            startY = e.getY();
+        } else {
+            stopX = currentX + e.getX();
+            stopY = currentY + e.getY();
+            X = stopX - startX;
+            Y = stopY - startY;
+        }
+
+        this.invalidate(); //refreshes the view ("this" view).
+    }
+    public void gauzeTool(MotionEvent e){
+        if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
+            paintXs.add((float) 0);
+            paintYs.add((float) 0);
+        }
+
+        else if (paintX!=e.getX() | paintY!=e.getY()){
+            paintXs.add(e.getX()-X);
+            paintYs.add(e.getY()-Y);
+        }
+        bitMaker();
+        this.invalidate(); //refreshes the view ("this" view).
+    }
+    void bitMaker(){ //for gauze.
         Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
         woundAplha = Bitmap.createBitmap(wound.getWidth(), wound.getHeight(), conf); // this creates a MUTABLE bitmap
         Canvas canvas = new Canvas(woundAplha);
@@ -69,50 +114,5 @@ public class WoundView extends View {
             }
         }
         canvas.drawBitmap(woundClean,0,0,masked);//wow
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent e) {
-
-
-        if(handsView.what==0) {             //the following code moves the wound image.
-            if (e.getAction() == 0) {
-                if (X != currentX) {
-                    currentX = X;
-                    currentY = Y;
-                }
-                startX = e.getX();
-                startY = e.getY();
-            } else {
-                stopX = currentX + e.getX();
-                stopY = currentY + e.getY();
-                X = stopX - startX;
-                Y = stopY - startY;
-            }
-
-            this.invalidate(); //refreshes the view ("this" view).
-        }
-        else if(handsView.what==1){
-
-
-            if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
-                paintXs.add((float) 0);
-                paintYs.add((float) 0);
-            }
-
-            else if (paintX!=e.getX() | paintY!=e.getY()){
-                paintXs.add(e.getX()-X);
-                paintYs.add(e.getY()-Y);
-            }
-            //paintX=e.getX();
-            //paintY=e.getY();
-
-            bitMaker();
-            this.invalidate(); //refreshes the view ("this" view).
-        }
-        else if(handsView.what==2){
-            System.out.println("2nd tool");
-        }
-        return true;
     }
 }
