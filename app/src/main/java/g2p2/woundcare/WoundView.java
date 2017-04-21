@@ -32,7 +32,7 @@ public class WoundView extends View {
         super(c,as);
         wound = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault);
         woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
-        woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
+        //woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
         //woundAplha = BitmapFactory.;
         coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         masked = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -104,8 +104,8 @@ public class WoundView extends View {
                 paintXs.add(e.getX()-X);
                 paintYs.add(e.getY()-Y);
             }
-            paintX=e.getX();
-            paintY=e.getY();
+            //paintX=e.getX();
+            //paintY=e.getY();
 
             bitMaker();
             this.invalidate(); //refreshes the view ("this" view).
