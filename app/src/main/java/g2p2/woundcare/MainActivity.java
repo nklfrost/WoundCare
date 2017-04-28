@@ -20,12 +20,18 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        LoggingAndUpload.Launch();
+
         final Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==1){
                     handsView.what=0;
-                } else handsView.what=1;
+                    LoggingAndUpload.info("disabled gauze tool");
+                } else {
+                    handsView.what = 1;
+                    LoggingAndUpload.info("enabled gauze tool");
+                }
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
@@ -35,7 +41,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(handsView.what==2){
                     handsView.what=0;
-                } else handsView.what=2;
+                    LoggingAndUpload.info("disabled tool#2");
+                } else {
+                    handsView.what=2;
+                    LoggingAndUpload.info("enabled tool#2");
+                }
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
