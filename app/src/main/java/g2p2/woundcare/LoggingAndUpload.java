@@ -23,9 +23,10 @@ import android.telephony.TelephonyManager;
 
 public class LoggingAndUpload {
         //logging
-        static Context context;
+        static Context c;
         static Logger logger = Logger.getLogger("Log");
-        static File log = new File(context.getFilesDir(), "log.log");
+    static File log;
+    // static File log = new File(context.getFilesDir(), "log.log");
         static FileHandler handler;
         //upload
         static JSch jsch = new JSch();
@@ -33,8 +34,12 @@ public class LoggingAndUpload {
         static TelephonyManager tm;
 
         //logging
-
-    public static void Launch() {
+    LoggingAndUpload(Context context){
+        log = new File(context.getFilesDir(), "log.log");
+    }
+    public static void Launch(Context context) {
+        c=context;
+        log = new File(context.getFilesDir(), "log.log");
         try
 
         {
@@ -65,7 +70,7 @@ public class LoggingAndUpload {
             Channel channel = session.openChannel("sftp");
             channel.connect();
             ChannelSftp sftp = (ChannelSftp) channel;
-            sftp.put(context.getFilesDir() + "log.log", "/home/logs/log+" + tm.getDeviceId() + ".log");
+            sftp.put(c.getFilesDir() + "log.log", "/home/logs/log+" + tm.getDeviceId() + ".log");
             sftp.exit();
             session.disconnect();
             System.out.println("success");
