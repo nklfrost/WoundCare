@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-
+final LoggingAndUpload upload=new LoggingAndUpload();
 
         final Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         final Button UPLOADTEST = (Button) findViewById(R.id.button5);
         UPLOADTEST.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                LoggingAndUpload.Upload();
+                upload.start();
             }
         });
     }
