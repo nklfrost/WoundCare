@@ -2,6 +2,7 @@ package g2p2.woundcare;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,8 +41,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        final Button compr1 = (Button) findViewById(R.id.button7);
+        compr1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==5){
+                    handsView.what=0;
+                } else handsView.what=5;
+                WoundView a = (WoundView) findViewById(R.id.view2);
+                a.compression();
+                findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
     }
-
-
 }
