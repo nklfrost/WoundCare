@@ -86,16 +86,13 @@ public class WoundView extends View {
         }
         else if(handsView.what==1){
             gauzeTool(e);
-            LoggingAndUpload.info("Used gauze tool");
 
         }
         else if(handsView.what==2){
             //put method here.
-            LoggingAndUpload.info("Used tool #2");
         }
         else if(handsView.what==3){
             //put method here.
-            LoggingAndUpload.info("Used tool#3");
         }
         else if(handsView.what==5){
             if (e.getX()>10 && e.getX()<110 && e.getY()<160 && e.getY()>60){
@@ -123,7 +120,6 @@ public class WoundView extends View {
             stopY = currentY + e.getY();
             X = stopX - startX;
             Y = stopY - startY;
-            LoggingAndUpload.info("Moved around using move tool");
         }
 
         this.invalidate(); //refreshes the view ("this" view).

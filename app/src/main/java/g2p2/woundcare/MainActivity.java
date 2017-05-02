@@ -28,10 +28,10 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==1){
                     handsView.what=0;
-                    LoggingAndUpload.info("disabled gauze tool");
+                    LoggingAndUpload.info("disabled gauze tool,");
                 } else {
                     handsView.what = 1;
-                    LoggingAndUpload.info("enabled gauze tool");
+                    LoggingAndUpload.info("enabled gauze tool,");
                 }
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
             }
@@ -42,10 +42,10 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==2){
                     handsView.what=0;
-                    LoggingAndUpload.info("disabled tool#2");
+                    LoggingAndUpload.info("disabled tool#2,");
                 } else {
                     handsView.what=2;
-                    LoggingAndUpload.info("enabled tool#2");
+                    LoggingAndUpload.info("enabled tool#2,");
                 }
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
             }
