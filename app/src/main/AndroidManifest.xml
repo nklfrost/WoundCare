@@ -22,6 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MenuActivity" />
         <activity
             android:name=".LoginActivity"
@@ -31,6 +32,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="g2p2.woundcare.MenuActivity" />
         </activity>
+
     </application>
 
 </manifest>
