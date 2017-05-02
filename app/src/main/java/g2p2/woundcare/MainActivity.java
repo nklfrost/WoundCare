@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.SeekBar;
+
+import static g2p2.woundcare.R.id.view;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     handsView.what = 1;
                     LoggingAndUpload.info("enabled gauze tool");
                 }
-                findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
 
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     handsView.what=2;
                     LoggingAndUpload.info("enabled tool#2");
                 }
-                findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
 
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 } else handsView.what=5;
                 WoundView a = (WoundView) findViewById(R.id.view2);
                 a.compression();
-                findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
 
@@ -67,6 +70,31 @@ public class MainActivity extends AppCompatActivity {
         UPLOADTEST.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 LoggingAndUpload.Upload();
+            }
+        });
+
+        final SeekBar phaseSelector = (SeekBar) findViewById(R.id.seekBar);
+        phaseSelector.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                handsView.phase = progress;
+                if (progress == 1) {
+                    findViewById(R.id.phase1Buttons).setVisibility(View.GONE);
+                    findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.phase1Buttons).setVisibility(View.VISIBLE);
+                    findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
             }
         });
     }
