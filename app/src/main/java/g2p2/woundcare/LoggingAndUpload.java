@@ -15,26 +15,36 @@ import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 /**
  * Created by robis on 17/04/28.
  */
 
-public class LoggingAndUpload {
+public class LoggingAndUpload extends Thread {
         //logging
-        static Context context;
+
+        static Context c;
         static Logger logger = Logger.getLogger("Log");
-        static File log = new File(context.getFilesDir(), "log.log");
+    static File log;
+    // static File log = new File(context.getFilesDir(), "log.log");r
         static FileHandler handler;
         //upload
         static JSch jsch = new JSch();
         static Session session = null;
-        static TelephonyManager tm;
+
 
         //logging
 
-    public static void Launch() {
+    
+    public static void Launch(Context context) {
+        c=context;
+        log = new File(context.getFilesDir(), "log.log");
+
+
+    
+
         try
 
         {
@@ -56,7 +66,7 @@ public class LoggingAndUpload {
         }
     }
 
-    public static void Upload() {
+    public void run() {
         try {
             session = jsch.getSession("logs", "185.117.22.160", 22);
             session.setConfig("StrictHostKeyChecking", "no");
@@ -65,7 +75,9 @@ public class LoggingAndUpload {
             Channel channel = session.openChannel("sftp");
             channel.connect();
             ChannelSftp sftp = (ChannelSftp) channel;
-            sftp.put(context.getFilesDir() + "log.log", "/home/logs/log+" + tm.getDeviceId() + ".log");
+
+            sftp.put(c.getFilesDir() + "log.log", "/home/logs/log+" + Settings.Secure.getString(c.getContentResolver(), Settings.Secure.ANDROID_ID) + ".log");
+
             sftp.exit();
             session.disconnect();
             System.out.println("success");

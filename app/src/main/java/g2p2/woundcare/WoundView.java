@@ -35,6 +35,8 @@ public class WoundView extends View {
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
+//this is a change.
+        LoggingAndUpload.Launch(c);
 
 
             wound = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault);
@@ -81,7 +83,6 @@ public class WoundView extends View {
 
         if(handsView.what==0) {             //the following code moves the wound image.
             moveTool(e);
-            LoggingAndUpload.info("Moved around using move tool");
         }
         else if(handsView.what==1){
             gauzeTool(e);
@@ -122,6 +123,7 @@ public class WoundView extends View {
             stopY = currentY + e.getY();
             X = stopX - startX;
             Y = stopY - startY;
+            LoggingAndUpload.info("Moved around using move tool");
         }
 
         this.invalidate(); //refreshes the view ("this" view).

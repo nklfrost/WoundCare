@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        LoggingAndUpload.Launch();
+final LoggingAndUpload upload=new LoggingAndUpload();
 
         final Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
                 WoundView a = (WoundView) findViewById(R.id.view2);
                 a.compression();
                 findViewById(R.id.view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+
+        final Button UPLOADTEST = (Button) findViewById(R.id.button5);
+        UPLOADTEST.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                upload.start();
             }
         });
     }
