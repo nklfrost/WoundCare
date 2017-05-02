@@ -35,7 +35,7 @@ public class WoundView extends View {
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
-
+//this is a change.
         LoggingAndUpload.Launch(c);
 
             wound = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault);
