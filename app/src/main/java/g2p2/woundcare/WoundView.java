@@ -36,6 +36,7 @@ public class WoundView extends View {
     public WoundView(Context c, AttributeSet as){
         super(c,as);
 
+
             wound = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault);
             woundClean = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault_clean);
             leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
@@ -56,12 +57,14 @@ public class WoundView extends View {
 
             bitMaker();
 
+
     }
 
     @Override
     protected void onDraw(Canvas c){
         if (compressionView){
             drawCompression(c);
+
 
         }
         else { // normal view
@@ -228,5 +231,6 @@ public class WoundView extends View {
 
         //bandagePlacementXs.add(550);
         //bandagePlacementYs.add(780);
+
     }
 }
