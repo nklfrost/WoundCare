@@ -79,46 +79,26 @@
                 android:layout_height="0dip"
                 android:layout_weight="5"
                 android:orientation="horizontal"
-                android:weightSum="4">
+                android:weightSum="4"
+                android:background="@drawable/line">
 
                 <GridLayout
+                    android:id="@+id/phase2Buttons"
+
+                    android:layout_gravity="center"
                     android:columnCount="3"
                     android:rowCount="3"
-                    android:id="@+id/phase1Buttons"
                     android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_margin="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:layout_marginBottom="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginRight="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_weight="2"
-                    android:background="@drawable/line"
-                    android:padding="0dp"
-                    android:paddingBottom="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingLeft="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingStart="0dp"
-                    android:paddingTop="0dp"
+
                     android:visibility="visible">
-
-
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-
-                        android:background="@drawable/bottle"
-                        android:padding="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingStart="5dp"
-                        android:paddingTop="5dp" />
-
                     <Button
                         android:id="@+id/button6"
                         android:layout_width="50dp"
@@ -130,8 +110,42 @@
                         android:id="@+id/button2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-
                         android:background="@drawable/gauze"
+                         />
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bottle"
+                         />
+
+                </GridLayout>
+
+
+
+                <GridLayout
+                    android:id="@+id/phase3Buttons"
+                    android:layout_gravity="center"
+                    android:columnCount="3"
+                    android:rowCount="3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="2"
+
+                    android:visibility="gone">
+
+
+                    <Button
+                        android:id="@+id/prontosan_phase3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bottle"
                         android:padding="5dp"
                         android:paddingBottom="5dp"
                         android:paddingEnd="5dp"
@@ -139,6 +153,9 @@
                         android:paddingRight="5dp"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp" />
+
+
+
 
                     <Button
                         android:id="@+id/button8"
@@ -153,7 +170,7 @@
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
 
-                         />
+                        />
 
                     <Button
                         android:id="@+id/button4"
@@ -167,7 +184,7 @@
                         android:paddingRight="5dp"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
-                         />
+                        />
 
                     <Button
                         android:id="@+id/button3"
@@ -181,7 +198,7 @@
                         android:paddingRight="5dp"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp"
-                         />
+                        />
 
                     <Button
                         android:id="@+id/button7"
@@ -212,58 +229,15 @@
                         android:paddingStart="5dp"
                         android:paddingTop="5dp" />
 
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
 
-                        android:background="@drawable/hidrogel"
-                        android:padding="5dp"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="5dp"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:paddingStart="5dp"
-                        android:paddingTop="5dp" />
 
 
                 </GridLayout>
-
-            <RelativeLayout
-                android:visibility="gone"
-                android:id="@+id/phase2Buttons"
-                android:layout_width="0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight="2"
-                android:background="@drawable/line"
-                android:layout_margin="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:padding="0dp"
-                android:paddingBottom="0dp"
-                android:paddingEnd="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:paddingStart="0dp"
-                android:paddingTop="0dp"
-                android:elevation="10dp">
-
-
-
-
-
-            </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:background="@drawable/line"
-
                     android:paddingRight="10dp"
                     android:paddingTop="10dp">
 

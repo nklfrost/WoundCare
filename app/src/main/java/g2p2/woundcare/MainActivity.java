@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button UPLOADTEST = (Button) findViewById(R.id.button5);
+        final Button UPLOADTEST = (Button) findViewById(R.id.button14);
         UPLOADTEST.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 LoggingAndUpload.Upload();
@@ -81,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 handsView.phase = progress;
                 if (progress == 1) {
-                    findViewById(R.id.phase1Buttons).setVisibility(View.GONE);
-                    findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
-                } else {
-                    findViewById(R.id.phase1Buttons).setVisibility(View.VISIBLE);
                     findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                    findViewById(R.id.phase3Buttons).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
+                    findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                 }
             }
 
