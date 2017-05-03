@@ -17,6 +17,7 @@ import android.view.View;
 public class handsView extends View {
     Bitmap test,test_2;
     static int what = 0;
+    static int phase = 0;
 
     public handsView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,7 +33,12 @@ public class handsView extends View {
         Paint myStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         //myStyle.setColor(0xff101010);
         //canvas.drawColor(Color.RED);
-        myStyle.setColor(Color.rgb(65,176,176));
+        myStyle.setColor(Color.argb(255,65,176,176));
+        myStyle.setStrokeWidth(30);
+        canvas.drawLine(0,0,this.getWidth(),0,myStyle);
+        canvas.drawLine(this.getWidth(),0,this.getWidth(),this.getHeight(),myStyle);
+        canvas.drawLine(this.getWidth(),this.getHeight(),0,this.getHeight(),myStyle);
+        canvas.drawLine(0,this.getHeight(),0,0,myStyle);
         switch (what){
             case 0:
                 break;

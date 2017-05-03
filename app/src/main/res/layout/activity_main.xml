@@ -48,7 +48,7 @@
         <FrameLayout
             android:layout_width="fill_parent"
             android:layout_height="0dip"
-            android:layout_weight="2"
+            android:layout_weight="1.8"
              >
 
 
@@ -56,9 +56,9 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="vertical"
-            android:weightSum="5"
+            android:weightSum="6"
             android:layout_marginBottom="0dp"
             android:layout_margin="0dp"
             android:layout_marginEnd="0dp"
@@ -74,239 +74,185 @@
             android:paddingStart="0dp"
             android:paddingTop="0dp">
 
-            <RelativeLayout
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="0dip"
-                android:layout_weight="4"
-                android:background="@drawable/line"
-                android:layout_margin="0dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="0dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:padding="0dp"
-                android:paddingBottom="0dp"
-                android:paddingEnd="0dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="0dp"
-                android:paddingStart="0dp"
-                android:paddingTop="0dp"
-                android:elevation="10dp">
+                android:layout_weight="5"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:background="@drawable/line">
 
-                <view
-                    android:id="@+id/view"
-                    class="g2p2.woundcare.handsView"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true" />
+                <GridLayout
+                    android:id="@+id/phase2Buttons"
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button"
-                    android:background="@drawable/bottle"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button2"
-                    android:layout_toRightOf="@+id/button2"
-                    android:layout_toEndOf="@+id/button2" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button6"
-                    android:background="@drawable/tweez"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/button2"
-                    android:layout_toEndOf="@+id/button2" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button2"
-                    android:background="@drawable/gauze"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button8"
-                    android:background="@drawable/ear_sticks"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/button"
-                    android:layout_toEndOf="@+id/button" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button4"
-                    android:background="@drawable/absorbant_dressing"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button6"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button3"
-                    android:background="@drawable/ketchup"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button6"
-                    android:layout_toRightOf="@+id/button6"
-                    android:layout_toEndOf="@+id/button6" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button11"
-                    android:background="@drawable/med_chart"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/view"
-                    android:layout_toStartOf="@+id/view" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button13"
-                    android:background="@drawable/finger"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button11"
-                    android:layout_alignLeft="@+id/button11"
-                    android:layout_alignStart="@+id/button11" />
-
-                <TextView
-                    android:text="Name of tool"
-                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:columnCount="3"
+                    android:rowCount="3"
+                    android:layout_width="0dip"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView"
-                    android:textSize="10sp"
-                    android:layout_below="@+id/view"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginRight="7dp"
-                    android:layout_marginEnd="7dp"
-                    android:textColor="@color/colorPrimary" />
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="2"
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button7"
-                    android:background="@drawable/roll"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:visibility="visible">
+                    <Button
+                        android:id="@+id/button6"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/tweez"
+                         />
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button9"
-                    android:background="@drawable/change_gloves"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/textView"
-                    android:layout_alignLeft="@+id/textView"
-                    android:layout_alignStart="@+id/textView"
-                    android:layout_alignRight="@+id/textView"
-                    android:layout_alignEnd="@+id/textView"
-                    android:layout_alignBottom="@+id/button5" />
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/gauze"
+                         />
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bottle"
+                         />
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button14"
-                    android:background="@drawable/tape"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button"
-                    android:layout_toRightOf="@+id/button4"
-                    android:layout_toEndOf="@+id/button4" />
-
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/button5"
-                    android:background="@drawable/hidrogel"
-                    android:padding="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingEnd="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/button3"
-                    android:layout_toRightOf="@+id/button"
-                    android:layout_toEndOf="@+id/button" />
+                </GridLayout>
 
 
-            </RelativeLayout>
+
+                <GridLayout
+                    android:id="@+id/phase3Buttons"
+                    android:layout_gravity="center"
+                    android:columnCount="3"
+                    android:rowCount="3"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_weight="2"
+
+                    android:visibility="gone">
+
+
+                    <Button
+                        android:id="@+id/prontosan_phase3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bottle"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp" />
+
+
+
+
+                    <Button
+                        android:id="@+id/button8"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ear_sticks"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+
+                        />
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/absorbant_dressing"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/ketchup"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp"
+                        />
+
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        android:background="@drawable/roll"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp" />
+
+
+                    <Button
+                        android:id="@+id/button14"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+
+                        android:background="@drawable/tape"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp" />
+
+
+
+
+                </GridLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp">
+
+                    <view
+                        android:id="@+id/view"
+                        class="g2p2.woundcare.handsView"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
 
             <FrameLayout
                 android:layout_width="fill_parent"
@@ -316,9 +262,9 @@
             >
 
                 <SeekBar
+                    android:id="@+id/seekBar"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/seekBar"
 
                     android:max="3"
                     android:progress="0" />
