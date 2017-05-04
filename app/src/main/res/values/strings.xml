@@ -17,4 +17,15 @@
     <string name="Start_game">Start treatment</string>
     <string name="Credits_button">Credits</string>
     <string name="handbook_button">Handbook</string>
+    <string name="Credits_text_01">Treater was created by:</string>
+    <string name="Credits_text_02">Rasmus Jagd Christensen
+        \n Niklas Kline Lange Frost
+        \n Marius Cristian Mic
+        \n Jens Hornshøj-Møller
+        \n Roberts Deksna
+        \n Francisc Vlad Loghin</string>
+    <string name="Credits_text_03">With help from:</string>
+    <string name="Credits_text_04">Mette Guldal Stefansen</string>
+    <string name="Credits_text_05">This app is a project born in:</string>
+    <string name="Credits_text_06">Aalborg University Copenhagen</string>
 </resources>
