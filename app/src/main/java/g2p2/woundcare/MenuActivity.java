@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -18,6 +19,14 @@ public class MenuActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
+            }
+        });
+
+        final TextView credits = (TextView) findViewById(R.id.textView2);
+        credits.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i2 = new Intent(getApplicationContext(), CreditsActivity.class);
+                startActivity(i2);
             }
         });
 
