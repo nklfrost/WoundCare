@@ -1,5 +1,6 @@
 package g2p2.woundcare;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 
+import static g2p2.woundcare.R.id.activity_main;
 import static g2p2.woundcare.R.id.view;
 
 
@@ -83,9 +85,12 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 if (progress == 1) {
                     findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
                     findViewById(R.id.phase3Buttons).setVisibility(View.VISIBLE);
+
                 } else {
                     findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
                     findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
+                    WoundView a = (WoundView) findViewById(R.id.view2);
+                    System.out.println(a.howMuchFibrin());
                 }
             }
 
@@ -99,6 +104,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();
                 findViewById(R.id.view2).postInvalidate();
+                startActivity(new Intent(MainActivity.this,Overlay.class));
             }
         });
     }

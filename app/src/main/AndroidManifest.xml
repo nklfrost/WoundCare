@@ -29,7 +29,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".EvalActivity"></activity>
+        <activity android:name=".Overlay"
+            android:theme="@style/AppTheme.overlay"
+
+            ></activity>
+
         <activity android:name=".CreditsActivity"></activity>
+
     </application>
 
 </manifest>
