@@ -114,7 +114,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.GRAY));
-                            break;
+                            break;//br
                 }
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();
