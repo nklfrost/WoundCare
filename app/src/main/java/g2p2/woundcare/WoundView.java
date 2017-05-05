@@ -34,31 +34,29 @@ public class WoundView extends View {
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
-//this is a change.
+
         LoggingAndUpload.Launch(c);
 
+        wound = BitmapFactory.decodeResource(getResources(), R.drawable.wound);
 
-            wound = BitmapFactory.decodeResource(getResources(), R.drawable.wound);
-            //woundClean = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault_clean);
         fibrin= BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
+        leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
 
-            leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
-
-            coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
-            masked = new Paint(Paint.ANTI_ALIAS_FLAG);
+        coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
+        masked = new Paint(Paint.ANTI_ALIAS_FLAG);
         bandageStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         bandageStyle.setColor(Color.argb(200,200,200,200));
         bandageStyle.setStrokeWidth(80);
-            X = -300;
-            Y = -300;
-            coolStyle.setColor(Color.BLACK);
-            coolStyle.setStrokeWidth(90);
-            masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
+        X = -300;
+        Y = -300;
+        coolStyle.setColor(Color.BLACK);
+        coolStyle.setStrokeWidth(90);
+        masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
 
         bandageHowFar=1;
         makeBandageGuide();
 
-            bitMaker();
+        bitMaker();
 
 
     }
@@ -68,12 +66,12 @@ public class WoundView extends View {
         if (compressionView){
             drawCompression(c);
 
-
         }
         else { // normal view
             c.drawBitmap(wound, X, Y, coolStyle); //draws the wound
             c.drawBitmap(woundAlpha, X, Y, coolStyle); //draws whatever is clean on top.
         }
+
     }
 
     @Override
@@ -84,16 +82,20 @@ public class WoundView extends View {
 
         if(handsView.what==0) {             //the following code moves the wound image.
             moveTool(e);
+            LoggingAndUpload.info("Moved around using move tool");
         }
         else if(handsView.what==1){
             gauzeTool(e);
+            LoggingAndUpload.info("Used gauze tool");
 
         }
         else if(handsView.what==2){
             //put method here.
+            LoggingAndUpload.info("Used tool #2");
         }
         else if(handsView.what==3){
             //put method here.
+            LoggingAndUpload.info("Used tool#3");
         }
         else if(handsView.what==5){
             if (e.getX()>10 && e.getX()<110 && e.getY()<160 && e.getY()>60){
@@ -257,6 +259,5 @@ public class WoundView extends View {
 
         //bandagePlacementXs.add(550);
         //bandagePlacementYs.add(780);
-
     }
 }

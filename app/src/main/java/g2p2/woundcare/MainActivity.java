@@ -3,6 +3,8 @@ package g2p2.woundcare;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -11,13 +13,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import static g2p2.woundcare.R.id.activity_main;
 import static g2p2.woundcare.R.id.view;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    public int level=1;
+    public int phase=1;
+    public int turn=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,30 +82,40 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             }
         });
 
-        final SeekBar phaseSelector = (SeekBar) findViewById(R.id.seekBar);
-        phaseSelector.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                handsView.phase = progress;
-                if (progress == 1) {
-                    findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
-                    findViewById(R.id.phase3Buttons).setVisibility(View.VISIBLE);
 
-                } else {
-                    findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
-                    findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
-                    WoundView a = (WoundView) findViewById(R.id.view2);
-                    System.out.println(a.howMuchFibrin());
+        final Button next = (Button) findViewById(R.id.nextButton);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(phase<3){phase++;}
+                else{phase=1;
+                    turn++;
+                    TextView days = (TextView) findViewById(R.id.days);
+                    days.setText(""+turn*3);}
+                TextView obsTex = (TextView) findViewById(R.id.observationText);
+                TextView cleTex = (TextView) findViewById(R.id.cleaningText);
+                TextView bandTex = (TextView) findViewById(R.id.bandagingText);
+
+                switch (phase){
+                    case 1: findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                            findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
+                            obsTex.setBackground(new ColorDrawable(Color.GRAY));
+                            cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            break;
+                    case 2: findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
+                            findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
+                            obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            cleTex.setBackground(new ColorDrawable(Color.GRAY));
+                            bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            break;
+                    case 3: findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                            findViewById(R.id.phase3Buttons).setVisibility(View.VISIBLE);
+                            obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            bandTex.setBackground(new ColorDrawable(Color.GRAY));
+                            break;//br
                 }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();
                 findViewById(R.id.view2).postInvalidate();
