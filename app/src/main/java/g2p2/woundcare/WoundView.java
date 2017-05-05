@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class WoundView extends View {
-    Bitmap wound, woundAlpha, woundClean, leg,fibrin;
+    Bitmap wound, woundAlpha, woundClean, leg,fibrin, bandage1;
     boolean compressionView = false, compButton = false;
 
     Paint coolStyle,masked,bandageStyle;
@@ -30,6 +30,9 @@ public class WoundView extends View {
 
     ArrayList<Integer> bandagePlacementXs = new ArrayList<Integer>();
     ArrayList<Integer> bandagePlacementYs = new ArrayList<Integer>();
+
+    boolean isbandage1 = false;
+    float bandage1X, bandage1Y;
 
 
     public WoundView(Context c, AttributeSet as){
@@ -58,7 +61,7 @@ public class WoundView extends View {
 
         bitMaker();
 
-
+            bandage1 = BitmapFactory.decodeResource(getResources(), R.drawable.bandage_photo);
     }
 
     @Override
@@ -72,6 +75,9 @@ public class WoundView extends View {
             c.drawBitmap(woundAlpha, X, Y, coolStyle); //draws whatever is clean on top.
         }
 
+        if (isbandage1){
+            c.drawBitmap(bandage1,bandage1X + X, bandage1Y + Y, coolStyle);
+        }
     }
 
     @Override
@@ -107,7 +113,10 @@ public class WoundView extends View {
 
             }
             else {compression();}
+        } else if (handsView.what == 10) {
+            bandagetool1(e);
         }
+
         return true;
     }
     public void moveTool(MotionEvent e){
@@ -138,6 +147,14 @@ public class WoundView extends View {
             paintYs.add(e.getY()-Y);
         }
         bitMaker();
+        this.invalidate(); //refreshes the view ("this" view).
+    }
+    /**********/public void bandagetool1(MotionEvent e){
+        if (e.getAction() == 0){
+            isbandage1 = true;
+            bandage1X = e.getX() - X;
+            bandage1Y = e.getY() - Y;
+        }
         this.invalidate(); //refreshes the view ("this" view).
     }
     void bitMaker(){ //for gauze.
