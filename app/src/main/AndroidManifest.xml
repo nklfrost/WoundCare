@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".EvalActivity"></activity>
+        <activity android:name=".Overlay"
+            android:theme="@style/AppTheme.overlay"
+
+            ></activity>
     </application>
 
 </manifest>
