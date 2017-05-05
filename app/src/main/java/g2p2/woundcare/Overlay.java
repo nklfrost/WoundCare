@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by Niklas on 5/5/2017.
@@ -34,13 +35,17 @@ public class Overlay extends Activity {
         //getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.phase1overlay);
 
-    Button exit = (Button) findViewById(R.id.exitoverlay);
-        exit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        TextView header = (TextView) findViewById(R.id.titleinOver);
+        header.setTextColor(Color.rgb(0,255,187));
+        header.setTextSize(40);
 
-    }
+        Button exit = (Button) findViewById(R.id.exitoverlay);
+            exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+
+        }
 }
