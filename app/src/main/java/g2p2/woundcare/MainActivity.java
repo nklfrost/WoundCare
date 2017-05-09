@@ -20,9 +20,9 @@ import static g2p2.woundcare.R.id.view;
 
 
 public class MainActivity extends AppCompatActivity {
-    public int level=1;
-    public int phase=1;
-    public int turn=0;
+    public static int level=1;
+    public static int phase=1;
+    public static int turn=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,7 +114,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.GRAY));
-                            break;//br
+                            break;
                 }
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();

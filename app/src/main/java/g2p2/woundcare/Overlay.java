@@ -33,7 +33,20 @@ public class Overlay extends Activity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
         //getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        setContentView(R.layout.phase1overlay);
+        switch (MainActivity.phase) {
+            case 0:
+                //setContentView(R.layout.);
+                break;
+            case 1:
+                setContentView(R.layout.newturnoverlay);
+                break;
+            case 2:
+                setContentView(R.layout.phase1overlay);
+                break;
+            case 3:
+                setContentView(R.layout.phase2overlay);
+                break;
+        }
 
         TextView header = (TextView) findViewById(R.id.titleinOver);
         header.setTextColor(Color.rgb(0,255,187));
