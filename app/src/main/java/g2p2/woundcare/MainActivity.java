@@ -103,7 +103,9 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             break;
-                    case 2: findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
+                    case 2: Intent i=new Intent(getApplicationContext(), EvalActivity.class);
+                        startActivity(i);
+                        findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.GRAY));
@@ -119,7 +121,6 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();
                 findViewById(R.id.view2).postInvalidate();
-                startActivity(new Intent(MainActivity.this,Overlay.class));
             }
         });
     }
