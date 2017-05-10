@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="g2p2.woundcare">
+    package="g2p2.woundcare"
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,6 +16,7 @@
 
     <application
         android:allowBackup="true"
+
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -29,8 +31,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreditsActivity" />
-        <activity android:name=".HandbookActivity"></activity>
-    </application>
 
+       
+        <activity android:name=".HandbookActivity"></activity>
+    
+
+
+        <activity android:name=".EvalActivity"></activity>
+        <activity android:name=".Overlay"
+            android:theme="@style/AppTheme.overlay"
+
+            ></activity>
+
+        <activity android:name=".CreditsActivity"></activity>
+
+
+    </application>
 </manifest>

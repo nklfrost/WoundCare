@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Xfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
  */
 
 public class WoundView extends View {
-    Bitmap wound, woundAplha, woundClean, leg;
+    Bitmap wound, woundAlpha, woundClean, leg,fibrin, bandage1;
     boolean compressionView = false, compButton = false;
 
     Paint coolStyle,masked,bandageStyle;
@@ -32,34 +31,37 @@ public class WoundView extends View {
     ArrayList<Integer> bandagePlacementXs = new ArrayList<Integer>();
     ArrayList<Integer> bandagePlacementYs = new ArrayList<Integer>();
 
+    boolean isbandage1 = false;
+    float bandage1X, bandage1Y;
+
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
-//this is a change.
+
         LoggingAndUpload.Launch(c);
 
+        wound = BitmapFactory.decodeResource(getResources(), R.drawable.wound);
 
-            wound = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault);
-            woundClean = BitmapFactory.decodeResource(getResources(), R.drawable.maxresdefault_clean);
-            leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
+        fibrin= BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
+        leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
 
-            coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
-            masked = new Paint(Paint.ANTI_ALIAS_FLAG);
+        coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
+        masked = new Paint(Paint.ANTI_ALIAS_FLAG);
         bandageStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         bandageStyle.setColor(Color.argb(200,200,200,200));
         bandageStyle.setStrokeWidth(80);
-            X = 0;
-            Y = 0;
-            coolStyle.setColor(Color.BLACK);
-            coolStyle.setStrokeWidth(90);
-            masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
+        X = -300;
+        Y = -300;
+        coolStyle.setColor(Color.BLACK);
+        coolStyle.setStrokeWidth(90);
+        masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
 
         bandageHowFar=1;
         makeBandageGuide();
 
-            bitMaker();
+        bitMaker();
 
-
+            bandage1 = BitmapFactory.decodeResource(getResources(), R.drawable.bandage_photo);
     }
 
     @Override
@@ -67,11 +69,14 @@ public class WoundView extends View {
         if (compressionView){
             drawCompression(c);
 
-
         }
         else { // normal view
             c.drawBitmap(wound, X, Y, coolStyle); //draws the wound
-            c.drawBitmap(woundAplha, X, Y, coolStyle); //draws whatever is clean on top.
+            c.drawBitmap(woundAlpha, X, Y, coolStyle); //draws whatever is clean on top.
+        }
+
+        if (isbandage1){
+            c.drawBitmap(bandage1,bandage1X + X, bandage1Y + Y, coolStyle);
         }
     }
 
@@ -83,16 +88,20 @@ public class WoundView extends View {
 
         if(handsView.what==0) {             //the following code moves the wound image.
             moveTool(e);
+            LoggingAndUpload.info("Moved around using move tool");
         }
         else if(handsView.what==1){
             gauzeTool(e);
+            LoggingAndUpload.info("Used gauze tool");
 
         }
         else if(handsView.what==2){
             //put method here.
+            LoggingAndUpload.info("Used tool #2");
         }
         else if(handsView.what==3){
             //put method here.
+            LoggingAndUpload.info("Used tool#3");
         }
         else if(handsView.what==5){
             if (e.getX()>10 && e.getX()<110 && e.getY()<160 && e.getY()>60){
@@ -104,7 +113,10 @@ public class WoundView extends View {
 
             }
             else {compression();}
+        } else if (handsView.what == 10) {
+            bandagetool1(e);
         }
+
         return true;
     }
     public void moveTool(MotionEvent e){
@@ -137,10 +149,18 @@ public class WoundView extends View {
         bitMaker();
         this.invalidate(); //refreshes the view ("this" view).
     }
+    /**********/public void bandagetool1(MotionEvent e){
+        if (e.getAction() == 0){
+            isbandage1 = true;
+            bandage1X = e.getX() - X;
+            bandage1Y = e.getY() - Y;
+        }
+        this.invalidate(); //refreshes the view ("this" view).
+    }
     void bitMaker(){ //for gauze.
         Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
-        woundAplha = Bitmap.createBitmap(wound.getWidth(), wound.getHeight(), conf); // this creates a MUTABLE bitmap
-        Canvas canvas = new Canvas(woundAplha);
+        woundAlpha = Bitmap.createBitmap(wound.getWidth(), wound.getHeight(), conf); // this creates a MUTABLE bitmap
+        Canvas canvas = new Canvas(woundAlpha);
         //canvas.drawBitmap(wound,0,0,coolStyle);
         for(int i=0;i<paintXs.size();i++){
             //canvas.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
@@ -148,7 +168,7 @@ public class WoundView extends View {
                 canvas.drawLine(paintXs.get(i-1),paintYs.get(i-1),paintXs.get(i),paintYs.get(i),coolStyle);
             }
         }
-        canvas.drawBitmap(woundClean,0,0,masked);//wow
+        canvas.drawBitmap(fibrin,0,0,masked);//wow
     }
     public void compression(){
         compressionView = true;
@@ -192,6 +212,33 @@ public class WoundView extends View {
         this.invalidate();
     }
 
+    public float howMuchFibrin(){
+        int skipFactor=10;
+        float howBig=0;
+        float howMuchAlphaOriginal=0;
+        float howMuchAlphaModified=0;
+        for (int i=0;i<wound.getHeight();i=i+skipFactor){
+            for (int ii=0;ii<wound.getWidth();ii=ii+skipFactor){
+                howBig++;
+                if (Color.alpha(fibrin.getPixel(ii,i))==0){
+                    howMuchAlphaOriginal++;
+                }
+            }
+        }
+        for (int i=0;i<wound.getHeight();i=i+skipFactor){
+            for (int ii=0;ii<wound.getWidth();ii=ii+skipFactor){
+                if (Color.alpha(woundAlpha.getPixel(ii,i))==0){
+                    howMuchAlphaModified++;
+                }
+            }
+        }
+        System.out.println(howMuchAlphaModified);
+
+        float result= (howBig-howMuchAlphaModified) / (howBig-howMuchAlphaOriginal)  ;
+
+        return result;
+    } // returns how much fibrin there is left in a % of the original amount
+
     private void makeBandageGuide(){
         bandagePlacementXs.add(334); //
         bandagePlacementYs.add(810); //point 0 ... needed
@@ -229,6 +276,5 @@ public class WoundView extends View {
 
         //bandagePlacementXs.add(550);
         //bandagePlacementYs.add(780);
-
     }
 }
