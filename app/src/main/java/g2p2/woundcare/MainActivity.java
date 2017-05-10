@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 final LoggingAndUpload upload=new LoggingAndUpload();
 
-        final Button button = (Button) findViewById(R.id.button2);
+        final Button button = (Button) findViewById(R.id.button2); //Gauze
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==1){
@@ -49,7 +49,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             }
         });
 
-        final Button button2 = (Button) findViewById(R.id.button6);
+        final Button button2 = (Button) findViewById(R.id.button6); //Tweezer
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==2){
@@ -63,7 +63,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             }
         });
 
-        final Button compr1 = (Button) findViewById(R.id.button7);
+        final Button compr1 = (Button) findViewById(R.id.button7); //Compression
         compr1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==5){
@@ -71,6 +71,24 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 } else handsView.what=5;
                 WoundView a = (WoundView) findViewById(R.id.view2);
                 a.compression();
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+        final Button zinc = (Button) findViewById(R.id.button3); //Zinc
+        zinc.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==21){
+                    handsView.what=0;
+                } else handsView.what=21;
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+        final Button water = (Button) findViewById(R.id.button3); //Check for water
+        water.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==22){
+                    handsView.what=0;
+                } else handsView.what=22;
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
@@ -103,7 +121,9 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             break;
-                    case 2: findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
+                    case 2: Intent i=new Intent(getApplicationContext(), EvalActivity.class);
+                        startActivity(i);
+                        findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.GRAY));
@@ -119,7 +139,6 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 handsView.what=0;
                 findViewById(R.id.view).postInvalidate();
                 findViewById(R.id.view2).postInvalidate();
-                startActivity(new Intent(MainActivity.this,Overlay.class));
             }
         });
     }

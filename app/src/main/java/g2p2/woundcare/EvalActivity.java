@@ -27,6 +27,7 @@ public class EvalActivity extends AppCompatActivity {
         int slider2value = slider2.getProgress();
         final Switch switcher = (Switch) findViewById(R.id.evalSwitch);
         Boolean switchState = switcher.isChecked();
+            finish();
     }
     });
 }
