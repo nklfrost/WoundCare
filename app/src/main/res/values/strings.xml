@@ -28,4 +28,17 @@
     <string name="Credits_text_04">Mette Guldal Stefansen</string>
     <string name="Credits_text_05">This app is a project born in:</string>
     <string name="Credits_text_06">Aalborg University Copenhagen</string>
+    <string name="Observation">Observation</string>
+    <string name="Cleaning">Cleaning</string>
+    <string name="Bandaging">Bandaging</string>
+    <string name="Filler">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+    <string name="finger">Finger</string>
+    <string name="Twizzers">Twizzers</string>
+    <string name="Gauze">Gauze</string>
+    <string name="polihexadin">Polihexadin</string>
+    <string name="zinc_cream">Zinc Cream</string>
+    <string name="dressing">Dressing</string>
+    <string name="tape">Tape</string>
+    <string name="roll">Roll</string>
+    <string name="hydrogel">Hydrogel</string>
 </resources>
