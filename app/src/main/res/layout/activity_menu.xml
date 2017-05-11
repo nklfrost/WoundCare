@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="210dp"
-        android:background="@color/colorPrimary_green"
+
         android:text="@string/Start_game"
         android:minWidth="135dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Credits_button"
-        android:textColor="@color/colorPrimary_green"
+        android:textColor="@color/headerColor"
+
         tools:hint="@string/Credits_button"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -68,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/handbook_button"
-        android:background="@color/colorPrimary_green"
+
         tools:hint="@string/handbook_button"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
