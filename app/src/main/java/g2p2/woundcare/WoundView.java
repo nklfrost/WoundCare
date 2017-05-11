@@ -13,16 +13,19 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Niklas on 4/7/2017.
  */
 
 public class WoundView extends View {
-    Bitmap wound, woundAlpha, woundClean, leg,fibrin, bandage1;
+    Bitmap wound, woundAlpha, woundClean, woundClean2, leg,fibrin, bandage1, woundAlpha2;
     boolean compressionView = false, compButton = false;
 
-    Paint coolStyle,masked,bandageStyle;
+    Paint coolStyle,masked,bandageStyle,zincStyle;
     float   X,Y,startX,startY,stopX,stopY,currentX,currentY,paintX,paintY,currentTouchX,currentTouchY,
             bandageHowFar;
     ArrayList<Float> paintXs = new ArrayList<Float>();
@@ -30,7 +33,8 @@ public class WoundView extends View {
 
     ArrayList<Integer> bandagePlacementXs = new ArrayList<Integer>();
     ArrayList<Integer> bandagePlacementYs = new ArrayList<Integer>();
-
+    Bitmap fingerprint;
+    boolean wetWound;
     boolean isbandage1 = false;
     float bandage1X, bandage1Y;
 
@@ -44,7 +48,7 @@ public class WoundView extends View {
 
         fibrin= BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
         leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
-
+        woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
         coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         masked = new Paint(Paint.ANTI_ALIAS_FLAG);
         bandageStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -116,6 +120,15 @@ public class WoundView extends View {
         } else if (handsView.what == 10) {
             bandagetool1(e);
         }
+        else if(handsView.what==21)
+        {
+            zincCremeTool(e);//this is the zinc cream
+        }
+        else if(handsView.what==22)
+        {
+            waterCheck(e);//put method here.
+        }
+
 
         return true;
     }
@@ -170,6 +183,55 @@ public class WoundView extends View {
         }
         canvas.drawBitmap(fibrin,0,0,masked);//wow
     }
+    //ZINC TOOL START
+    public void zincCremeTool(MotionEvent e){
+        if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
+            paintXs.add((float) 0);
+            paintYs.add((float) 0);
+        }
+        else if (paintX!=e.getX() | paintY!=e.getY()){
+            paintXs.add(e.getX()-X);
+            paintYs.add(e.getY()-Y);
+        }
+        zincBitMaker();
+        this.invalidate(); //refreshes the view ("this" view).
+    }
+    void zincBitMaker()//for zinc.
+    {
+        Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
+        woundAlpha2 = Bitmap.createBitmap(wound.getWidth(), wound.getHeight(), conf); // this creates a MUTABLE bitmap
+        Canvas canvas = new Canvas(woundAlpha2);
+        //canvas.drawBitmap(wound,0,0,coolStyle);
+        for(int i=0;i<paintXs.size();i++){
+            //canvas.drawCircle(paintXs.get(i),paintYs.get(i),50,coolStyle);
+            if (i>1 && paintXs.get(i-1)!=0 && paintYs.get(i-1)!=0 && paintXs.get(i)!=0 && paintYs.get(i)!=0){
+                canvas.drawLine(paintXs.get(i-1),paintYs.get(i-1),paintXs.get(i),paintYs.get(i),zincStyle);
+            }
+        }
+        //canvas.drawBitmap(woundClean,0,0,masked);//wow
+    }
+    //ZINC TOOL END
+    //WATER CHECK START
+    final ScheduledExecutorService timer = Executors.newScheduledThreadPool(5);
+    void waterCheck(MotionEvent e)
+    {
+        if (e.getAction() == 0 && wetWound == true)
+        {
+            final Runnable updateScreen = new Runnable()
+            {
+                @Override
+                public void run()
+                {
+                    //do the thing that runs in here
+                    //Plan: when user touch wound in this, a fingerprint picture will appear where the user touch. if there iss water then it has to disappear, by raisning or lowering the alpha
+                    // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
+                    //make a have a thing that runs for time execution script
+                }
+            };
+            timer.scheduleAtFixedRate(updateScreen, 33, 33, TimeUnit.MILLISECONDS);
+        }
+    }
+
     public void compression(){
         compressionView = true;
         this.invalidate();
