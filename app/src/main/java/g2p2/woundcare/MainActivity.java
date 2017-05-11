@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import static g2p2.woundcare.R.id.activity_main;
 import static g2p2.woundcare.R.id.view;
 
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static int level=1;
     public static int phase=1;
     public static int turn=0;
+    public static float fibrin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +125,18 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             obsTex.setBackground(new ColorDrawable(Color.GRAY));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
+                            final WoundView a = (WoundView) findViewById(R.id.view2);
+                            fibrin = a.howMuchFibrin();
+                            startActivity(new Intent(getApplicationContext(),Overlay.class));
+                            final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                            final Runnable waitASec = new Runnable() {
+                                @Override
+                                public void run() {
+                                    a.reset();
+                                }
+                            };
+                            scheduler.schedule(waitASec,100,TimeUnit.MILLISECONDS);
+
                             break;
                     case 2: Intent i=new Intent(getApplicationContext(), EvalActivity.class);
                         startActivity(i);
@@ -134,6 +151,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.GRAY));
+
                             break;
                 }
                 handsView.what=0;

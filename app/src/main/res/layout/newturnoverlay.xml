@@ -13,7 +13,35 @@
         android:id="@+id/titleinOver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You done this and this" />
+        android:paddingBottom="10dp"
+        android:text="Evaluation:"
+        android:textSize="40sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Observation Phase:"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/woundSizeAssesment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You assesed the wound to be THIS size." />
+
+    <TextView
+        android:id="@+id/realWoundSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="It was really THIS size." />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Cleaning Phase:"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/fibrinscore"
@@ -21,14 +49,44 @@
         android:layout_height="wrap_content"
         android:text="Amount of fibrin left after cleaning: " />
 
-    <SeekBar
-        android:id="@+id/seekBar2"
+    <TextView
+        android:id="@+id/textView45"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Bandaging Phase:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/bandageChoice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You chose THIS bandage." />
+
+    <TextView
+        android:id="@+id/realBandage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The correct bandage to use would be THIS." />
+
+    <TextView
+        android:id="@+id/textView39"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="Overall assesment:"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/overallAssesment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You did XXX."
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/exitoverlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Escape" />
+        android:text="OK" />
 </LinearLayout>

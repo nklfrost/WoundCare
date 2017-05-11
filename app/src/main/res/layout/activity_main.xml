@@ -273,7 +273,8 @@
                     android:layout_alignBaseline="@+id/cleaningText"
                     android:layout_alignBottom="@+id/cleaningText"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:background="@android:color/darker_gray"/>
 
                 <TextView
                     android:id="@+id/cleaningText"

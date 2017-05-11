@@ -11,6 +11,7 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
@@ -27,7 +28,7 @@ public class WoundView extends View {
 
     Paint coolStyle,masked,bandageStyle,zincStyle;
     float   X,Y,startX,startY,stopX,stopY,currentX,currentY,paintX,paintY,currentTouchX,currentTouchY,
-            bandageHowFar;
+            bandageHowFar,whatLevelDoIThinkItIs;
     ArrayList<Float> paintXs = new ArrayList<Float>();
     ArrayList<Float> paintYs = new ArrayList<Float>();
 
@@ -41,7 +42,7 @@ public class WoundView extends View {
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
-
+        whatLevelDoIThinkItIs=1;
         LoggingAndUpload.Launch(c);
 
         wound = BitmapFactory.decodeResource(getResources(), R.drawable.wound);
@@ -70,6 +71,10 @@ public class WoundView extends View {
 
     @Override
     protected void onDraw(Canvas c){
+        if(whatLevelDoIThinkItIs!=MainActivity.level){
+            whatLevelDoIThinkItIs=MainActivity.level;
+            this.reset();
+        }
         if (compressionView){
             drawCompression(c);
 
@@ -338,5 +343,38 @@ public class WoundView extends View {
 
         //bandagePlacementXs.add(550);
         //bandagePlacementYs.add(780);
+    }
+
+    public void reset(){
+        paintXs.clear();
+        paintYs.clear();
+        X=-300;
+        Y=-300;
+        switch (MainActivity.level) {
+            case 1:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
+                break;
+            case 2:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl2);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl2);
+                break;
+            case 3:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl3);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl3);
+                break;
+            case 4:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl4);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl4);
+                break;
+            case 5:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl5);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl5);
+                break;
+        }
+
+
+        bitMaker();
+        this.invalidate();
     }
 }
