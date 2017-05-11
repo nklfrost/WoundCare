@@ -15,6 +15,12 @@
         android:layout_height="wrap_content"
         android:text="You done this and this" />
 
+    <TextView
+        android:id="@+id/fibrinscore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Amount of fibrin left after cleaning: " />
+
     <SeekBar
         android:id="@+id/seekBar2"
         android:layout_width="match_parent"

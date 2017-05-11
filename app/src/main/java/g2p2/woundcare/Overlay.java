@@ -39,6 +39,11 @@ public class Overlay extends Activity {
                 break;
             case 1:
                 setContentView(R.layout.newturnoverlay);
+                WoundView woundV = (WoundView) findViewById(R.id.view2);
+                float percentFibrin = 20;
+                        //woundV.howMuchFibrin();
+                TextView fibrinScore = (TextView) findViewById(R.id.fibrinscore);
+                fibrinScore.setText("Amount of fibrin left after cleaning: "+percentFibrin);
                 break;
             case 2:
                 setContentView(R.layout.phase1overlay);
