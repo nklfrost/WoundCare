@@ -39,9 +39,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 final LoggingAndUpload upload=new LoggingAndUpload();
-
-        final Button button = (Button) findViewById(R.id.button2); //Gauze
-        button.setOnClickListener(new View.OnClickListener() {
+//Observation tools
+        final Button tweezer = (Button) findViewById(R.id.button1); //Tweezer
+        tweezer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==2){
+                    handsView.what=0;
+                    LoggingAndUpload.info("disabled tweezers,");
+                } else {
+                    handsView.what=2;
+                    LoggingAndUpload.info("enabled tweezers,");
+                }
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+        final Button water = (Button) findViewById(R.id.button2); //Check for water
+        water.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(handsView.what==22){
+                    handsView.what=0;
+                } else handsView.what=22;
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+        //Cleaning tool
+        final Button gauze = (Button) findViewById(R.id.button3); //Gauze
+        gauze.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==1){
                     handsView.what=0;
@@ -54,32 +77,8 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             }
         });
 
-        final Button button2 = (Button) findViewById(R.id.button6); //Tweezer
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(handsView.what==2){
-                    handsView.what=0;
-                    LoggingAndUpload.info("disabled tool#2,");
-                } else {
-                    handsView.what=2;
-                    LoggingAndUpload.info("enabled tool#2,");
-                }
-                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
-            }
-        });
-
-        final Button compr1 = (Button) findViewById(R.id.button7); //Compression
-        compr1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if(handsView.what==5){
-                    handsView.what=0;
-                } else handsView.what=5;
-                WoundView a = (WoundView) findViewById(R.id.view2);
-                a.compression();
-                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
-            }
-        });
-        final Button zinc = (Button) findViewById(R.id.button3); //Zinc
+//Bandaging tools
+        final Button zinc = (Button) findViewById(R.id.button4); //Zinc
         zinc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(handsView.what==21){
@@ -88,23 +87,24 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
-        final Button water = (Button) findViewById(R.id.button3); //Check for water
-        water.setOnClickListener(new View.OnClickListener() {
+        final Button absorb = (Button) findViewById(R.id.button5); //Absorbant dressing
+        absorb.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(handsView.what==22){
+                if(handsView.what==3){
                     handsView.what=0;
-                } else handsView.what=22;
+                } else handsView.what=3;
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
-
-        final Button UPLOADTEST = (Button) findViewById(R.id.button14);
-        UPLOADTEST.setOnClickListener(new View.OnClickListener() {
+        final Button moisture = (Button) findViewById(R.id.button6); //Moisturizing dressing
+        moisture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                upload.start();
+                if(handsView.what==5){
+                    handsView.what=0;
+                } else handsView.what=5;
+                findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
-
 
         final Button next = (Button) findViewById(R.id.nextButton);
         next.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +120,8 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 TextView bandTex = (TextView) findViewById(R.id.bandagingText);
 
                 switch (phase){
-                    case 1: findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                    case 1: findViewById(R.id.phase1Buttons).setVisibility(View.VISIBLE);
+                        findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                             obsTex.setBackground(new ColorDrawable(Color.GRAY));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
@@ -140,6 +141,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             break;
                     case 2: Intent i=new Intent(getApplicationContext(), EvalActivity.class);
                         startActivity(i);
+                        findViewById(R.id.phase1Buttons).setVisibility(View.GONE);
                         findViewById(R.id.phase2Buttons).setVisibility(View.VISIBLE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
@@ -147,6 +149,7 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                             bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             break;
                     case 3: findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
+                        findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.VISIBLE);
                             obsTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));

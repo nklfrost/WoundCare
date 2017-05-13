@@ -46,7 +46,8 @@ public class Overlay extends Activity {
                 fibrinScore.setText("Amount of fibrin left after cleaning: "+(int) percentFibrin+"%");
                 if (percentFibrin<10){fibrinScore.setTextColor(Color.GREEN);}
                 else{fibrinScore.setTextColor(Color.RED);}
-
+TextView woundDepth=(TextView) findViewById(R.id.woundSizeAssesment);
+                woundDepth.setText("You assesed the wound to be"+EvalActivity.sliderValue+" cm.");
                 TextView overAll = (TextView) findViewById(R.id.overallAssesment);
                 if(percentFibrin<10){
                     overAll.setText("You treated the wound correctly!");
