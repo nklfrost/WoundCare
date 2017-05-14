@@ -17,7 +17,6 @@ import android.view.View;
 public class handsView extends View {
     Bitmap test,test_2;
     static int what = 0;
-    static int phase = 0; //what do we use this for?
 
     public handsView(Context context, AttributeSet attrs) {
         super(context, attrs);

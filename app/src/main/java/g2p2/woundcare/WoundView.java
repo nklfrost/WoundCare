@@ -11,6 +11,7 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
@@ -22,116 +23,90 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class WoundView extends View {
-    Bitmap wound, woundAlpha, woundClean, woundClean2, leg,fibrin, bandage1, woundAlpha2;
-    boolean compressionView = false, compButton = false;
+    Bitmap wound, woundAlpha, woundClean, woundClean2,fibrin, woundAlpha2;
 
-    Paint coolStyle,masked,bandageStyle,zincStyle;
-    float   X,Y,startX,startY,stopX,stopY,currentX,currentY,paintX,paintY,currentTouchX,currentTouchY,
-            bandageHowFar;
+    Paint coolStyle,masked,zincStyle;
+    float   X,Y,startX,startY,stopX,stopY,currentX,currentY,paintX,paintY,currentTouchX,currentTouchY, whatLevelDoIThinkItIs;
     ArrayList<Float> paintXs = new ArrayList<Float>();
     ArrayList<Float> paintYs = new ArrayList<Float>();
-
-    ArrayList<Integer> bandagePlacementXs = new ArrayList<Integer>();
-    ArrayList<Integer> bandagePlacementYs = new ArrayList<Integer>();
-    Bitmap fingerprint;
     boolean wetWound;
-    boolean isbandage1 = false;
-    float bandage1X, bandage1Y;
 
 
     public WoundView(Context c, AttributeSet as){
         super(c,as);
-
+        whatLevelDoIThinkItIs=1;
         LoggingAndUpload.Launch(c);
 
         wound = BitmapFactory.decodeResource(getResources(), R.drawable.wound);
 
         fibrin= BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
-        leg = BitmapFactory.decodeResource(getResources(), R.drawable.leg);
         woundClean = BitmapFactory.decodeResource(getResources(),R.drawable.maxresdefault_clean);
         coolStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
         masked = new Paint(Paint.ANTI_ALIAS_FLAG);
-        bandageStyle = new Paint(Paint.ANTI_ALIAS_FLAG);
-        bandageStyle.setColor(Color.argb(200,200,200,200));
-        bandageStyle.setStrokeWidth(80);
         X = -300;
         Y = -300;
         coolStyle.setColor(Color.BLACK);
         coolStyle.setStrokeWidth(90);
         masked.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
 
-        bandageHowFar=1;
-        makeBandageGuide();
 
         bitMaker();
 
-            bandage1 = BitmapFactory.decodeResource(getResources(), R.drawable.bandage_photo);
     }
 
     @Override
     protected void onDraw(Canvas c){
-        if (compressionView){
-            drawCompression(c);
-
+        if(whatLevelDoIThinkItIs!=MainActivity.level){
+            whatLevelDoIThinkItIs=MainActivity.level;
+            this.reset();
         }
+
         else { // normal view
             c.drawBitmap(wound, X, Y, coolStyle); //draws the wound
             c.drawBitmap(woundAlpha, X, Y, coolStyle); //draws whatever is clean on top.
         }
 
-        if (isbandage1){
-            c.drawBitmap(bandage1,bandage1X + X, bandage1Y + Y, coolStyle);
-        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        if (handsView.what!=5){compressionView= false;}
         currentTouchX=e.getX();
         currentTouchY=e.getY();
 
         if(handsView.what==0) {             //the following code moves the wound image.
             moveTool(e);
-            LoggingAndUpload.info("Moved around using move tool");
         }
-        else if(handsView.what==1){
-            gauzeTool(e);
-            LoggingAndUpload.info("Used gauze tool");
-
-        }
-        else if(handsView.what==2){
-            //put method here.
-            LoggingAndUpload.info("Used tool #2");
-        }
-        else if(handsView.what==3){
-            //put method here.
-            LoggingAndUpload.info("Used tool#3");
-        }
-        else if(handsView.what==5){
-            if (e.getX()>10 && e.getX()<110 && e.getY()<160 && e.getY()>60){
-                System.out.println("teee");
-                compButton = true;
-            }
-            else if(compButton){
-                //System.out.println(e.getX()+","+e.getY());
-
-            }
-            else {compression();}
-        } else if (handsView.what == 10) {
-            bandagetool1(e);
-        }
-        else if(handsView.what==21)
-        {
-            zincCremeTool(e);//this is the zinc cream
-        }
+        //observation
         else if(handsView.what==22)
         {
             waterCheck(e);//put method here.
         }
+        else if(handsView.what==2){//tweezers
+            tweezTool(e);
+        }
+        //cleaning
+        else if(handsView.what==1){//gauze
+            gauzeTool(e);
+
+        }
+        //bandaging
+        else if(handsView.what==21)//zinc
+        {
+            zincCremeTool(e);//this is the zinc cream
+        }
+        else if(handsView.what==3){//absorb
+            absorbComp(e);
+        }
+        else if(handsView.what==5) {//moistur
+        moisturComp(e);
+        }
+
+
 
 
         return true;
     }
+    //MOVE
     public void moveTool(MotionEvent e){
         if (e.getAction() == 0) {
             if (X != currentX) {
@@ -149,6 +124,17 @@ public class WoundView extends View {
 
         this.invalidate(); //refreshes the view ("this" view).
     }
+    //TWEEZERS
+    public void tweezTool(MotionEvent e){
+
+    }
+    //WATER CHECK
+    void waterCheck(MotionEvent e)
+    {
+        if (wetWound == true) {}
+        else{}
+    }
+    //GAUZE
     public void gauzeTool(MotionEvent e){
         if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
             paintXs.add((float) 0);
@@ -162,14 +148,7 @@ public class WoundView extends View {
         bitMaker();
         this.invalidate(); //refreshes the view ("this" view).
     }
-    /**********/public void bandagetool1(MotionEvent e){
-        if (e.getAction() == 0){
-            isbandage1 = true;
-            bandage1X = e.getX() - X;
-            bandage1Y = e.getY() - Y;
-        }
-        this.invalidate(); //refreshes the view ("this" view).
-    }
+
     void bitMaker(){ //for gauze.
         Bitmap.Config conf = Bitmap.Config.ARGB_8888; // see other conf types
         woundAlpha = Bitmap.createBitmap(wound.getWidth(), wound.getHeight(), conf); // this creates a MUTABLE bitmap
@@ -183,7 +162,7 @@ public class WoundView extends View {
         }
         canvas.drawBitmap(fibrin,0,0,masked);//wow
     }
-    //ZINC TOOL START
+    //ZINC
     public void zincCremeTool(MotionEvent e){
         if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
             paintXs.add((float) 0);
@@ -210,69 +189,16 @@ public class WoundView extends View {
         }
         //canvas.drawBitmap(woundClean,0,0,masked);//wow
     }
-    //ZINC TOOL END
-    //WATER CHECK START
-    final ScheduledExecutorService timer = Executors.newScheduledThreadPool(5);
-    void waterCheck(MotionEvent e)
-    {
-        if (e.getAction() == 0 && wetWound == true)
-        {
-            final Runnable updateScreen = new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    //do the thing that runs in here
-                    //Plan: when user touch wound in this, a fingerprint picture will appear where the user touch. if there iss water then it has to disappear, by raisning or lowering the alpha
-                    // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
-                    //make a have a thing that runs for time execution script
-                }
-            };
-            timer.scheduleAtFixedRate(updateScreen, 33, 33, TimeUnit.MILLISECONDS);
-        }
+    //ABSORBANT
+public void absorbComp(MotionEvent e){
+
+}
+//MOISTURIZING
+    public void moisturComp(MotionEvent e){
+
     }
 
-    public void compression(){
-        compressionView = true;
-        this.invalidate();
-    }
-    public void drawCompression(Canvas c){
-        c.drawBitmap(leg, -60,-90,coolStyle);
-        c.drawRect(10,60,110,160,coolStyle);
-        if (compButton){
-            for(int i=0;i<bandageHowFar;i++) {
-                if (i < bandageHowFar) {
-                    c.drawLine(bandagePlacementXs.get(i), bandagePlacementYs.get(i), bandagePlacementXs.get(i+1), bandagePlacementYs.get(i+1), bandageStyle);
-                }
-            }
-            c.drawLine(bandagePlacementXs.get((int)bandageHowFar), bandagePlacementYs.get((int)bandageHowFar), currentTouchX, currentTouchY, bandageStyle);
-            //System.out.println(currentTouchX + ", "+currentTouchY);
-            if(bandageHowFar+1<bandagePlacementYs.size()) {
-                if (bandagePlacementYs.get((int) bandageHowFar) < bandagePlacementYs.get((int) bandageHowFar + 1)) {
-                    if (bandagePlacementXs.get((int) bandageHowFar+1) > currentTouchX) {
-                        bandageHowFar++;
-                    }
-                }
 
-                else if(bandagePlacementXs.get((int) bandageHowFar) > bandagePlacementXs.get((int) bandageHowFar + 1)) {
-                    if (bandagePlacementYs.get((int) bandageHowFar+1) > currentTouchY) {
-                        bandageHowFar++;
-                    }
-                }
-                else if (bandagePlacementYs.get((int) bandageHowFar) > bandagePlacementYs.get((int) bandageHowFar + 1)) {
-                    if (bandagePlacementXs.get((int) bandageHowFar+1) < currentTouchX) {
-                        bandageHowFar++;
-                    }
-                }
-                else if(bandagePlacementXs.get((int) bandageHowFar) < bandagePlacementXs.get((int) bandageHowFar + 1)) {
-                    if (bandagePlacementYs.get((int) bandageHowFar+1) < currentTouchY) {
-                        bandageHowFar++;
-                    }
-                }
-            }
-        }
-        this.invalidate();
-    }
 
     public float howMuchFibrin(){
         int skipFactor=10;
@@ -301,42 +227,37 @@ public class WoundView extends View {
         return result;
     } // returns how much fibrin there is left in a % of the original amount
 
-    private void makeBandageGuide(){
-        bandagePlacementXs.add(334); //
-        bandagePlacementYs.add(810); //point 0 ... needed
 
-        //point 1
-        bandagePlacementXs.add(334);
-        bandagePlacementYs.add(810);
-
-        //point 2
-        bandagePlacementXs.add(510);
-        bandagePlacementYs.add(810);
-
-        //point 3
-        bandagePlacementXs.add(510);
-        bandagePlacementYs.add(900);
-
-        //point 4
-        bandagePlacementXs.add(360);
-        bandagePlacementYs.add(900);
-
-        //point 5
-        bandagePlacementXs.add(360);
-        bandagePlacementYs.add(863);
-
-        //point 6
-        bandagePlacementXs.add(360);
-        bandagePlacementYs.add(780);
-
-        //point 7
-        bandagePlacementXs.add(550);
-        bandagePlacementYs.add(780);
-
-        //test
+    public void reset(){
+        paintXs.clear();
+        paintYs.clear();
+        X=-300;
+        Y=-300;
+        switch (MainActivity.level) {
+            case 1:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibirin);
+                break;
+            case 2:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl2);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl2);
+                break;
+            case 3:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl3);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl3);
+                break;
+            case 4:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl4);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl4);
+                break;
+            case 5:
+                wound = BitmapFactory.decodeResource(getResources(),R.drawable.wound_lvl5);
+                fibrin = BitmapFactory.decodeResource(getResources(),R.drawable.fibrin_lvl5);
+                break;
+        }
 
 
-        //bandagePlacementXs.add(550);
-        //bandagePlacementYs.add(780);
+        bitMaker();
+        this.invalidate();
     }
 }

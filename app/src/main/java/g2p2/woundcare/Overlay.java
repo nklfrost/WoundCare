@@ -39,11 +39,26 @@ public class Overlay extends Activity {
                 break;
             case 1:
                 setContentView(R.layout.newturnoverlay);
-                WoundView woundV = (WoundView) findViewById(R.id.view2);
-                float percentFibrin = 20;
-                        //woundV.howMuchFibrin();
+
+                float percentFibrin = MainActivity.fibrin*100;
+
                 TextView fibrinScore = (TextView) findViewById(R.id.fibrinscore);
-                fibrinScore.setText("Amount of fibrin left after cleaning: "+percentFibrin);
+                fibrinScore.setText("Amount of fibrin left after cleaning: "+(int) percentFibrin+"%");
+                if (percentFibrin<10){fibrinScore.setTextColor(Color.GREEN);}
+                else{fibrinScore.setTextColor(Color.RED);}
+TextView woundDepth=(TextView) findViewById(R.id.woundSizeAssesment);
+                woundDepth.setText("You assesed the wound to be"+EvalActivity.sliderValue+" cm.");
+                TextView overAll = (TextView) findViewById(R.id.overallAssesment);
+                if(percentFibrin<10){
+                    overAll.setText("You treated the wound correctly!");
+                    overAll.setTextColor(Color.GREEN);
+                    MainActivity.level++;
+
+                }
+                else {
+                    overAll.setText("You didn't treat the wound correctly.");
+                    overAll.setTextColor(Color.RED);
+                }
                 break;
             case 2:
                 setContentView(R.layout.phase1overlay);
@@ -62,6 +77,7 @@ public class Overlay extends Activity {
                 @Override
                 public void onClick(View v) {
                     finish();
+
                 }
             });
 
