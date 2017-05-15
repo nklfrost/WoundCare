@@ -1,10 +1,12 @@
 package g2p2.woundcare;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public static int phase=1;
     public static int turn=0;
     public static float fibrin;
+    public static int bandage_type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final TextView tweeze=(TextView) findViewById(R.id.tweezText);
        final TextView watertxt=(TextView) findViewById(R.id.waterText);
+
+
+
 final LoggingAndUpload upload=new LoggingAndUpload();
 //Observation tools
         final Button tweezer = (Button) findViewById(R.id.button1); //Tweezer
@@ -125,7 +132,16 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==3){
                     handsView.what=0;
-                } else handsView.what=3;
+                    bandage_type = 0;
+                    ImageView bandage_img = (ImageView) findViewById(R.id.imageView4);
+                    bandage_img.setAlpha(0f);
+                } else {
+                    handsView.what=3;
+                    bandage_type = 2;
+                    ImageView bandage_img = (ImageView) findViewById(R.id.imageView4);
+                    bandage_img.setImageResource(R.drawable.bandage_m);
+                    bandage_img.setAlpha(1f);
+                }
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
@@ -134,8 +150,68 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==5){
                     handsView.what=0;
-                } else handsView.what=5;
+                    bandage_type = 0;
+                    ImageView bandage_img = (ImageView) findViewById(R.id.imageView4);
+                    bandage_img.setAlpha(0f);
+                } else {
+                    handsView.what=5;
+                    bandage_type = 1;
+                    ImageView bandage_img = (ImageView) findViewById(R.id.imageView4);
+                    bandage_img.setImageResource(R.drawable.bandage_n);
+                    bandage_img.setAlpha(1f);
+                }
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
+            }
+        });
+
+        final Button button7 = (Button) findViewById(R.id.button7);
+        button7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i_mc = new Intent(getApplicationContext(), MedChartView.class);
+                startActivity(i_mc);
+            }
+        });
+
+        final Button button_info = (Button) findViewById(R.id.button_info);
+        button_info.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (phase==1) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle(getString(R.string.observation_phase));
+                    alertDialog.setMessage(getString(R.string.observation_phase_exp));
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else if (phase==2) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle(getString(R.string.cleaning_phase));
+                    alertDialog.setMessage(getString(R.string.cleaning_phase_exp));
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+                else if (phase==3) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                    alertDialog.setTitle(getString(R.string.bandaging_phase));
+                    alertDialog.setMessage(getString(R.string.bandaging_phase_exp));
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
+                }
+
             }
         });
 

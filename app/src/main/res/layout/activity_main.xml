@@ -40,12 +40,8 @@
         android:paddingRight="0dp"
         android:paddingStart="0dp"
         android:paddingTop="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginBottom="34dp">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
 
 
         <FrameLayout
@@ -60,6 +56,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </FrameLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -157,12 +158,12 @@
                         android:id="@+id/fake2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:background="@drawable/hydrogel" />
+                        android:background="@drawable/hidrogel" />
                     <Button
                         android:id="@+id/fake3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:background="@drawable/tweezerz" />
+                        android:background="@drawable/tweez" />
 
                 </GridLayout>
 
@@ -238,7 +239,7 @@
                         android:id="@+id/fake5"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:background="@drawable/compression"
+                        android:background="@drawable/roll"
                         android:padding="5dp"
                         android:paddingBottom="5dp"
                         android:paddingEnd="5dp"
@@ -267,37 +268,67 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <Button
+                        android:id="@+id/button7"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="9dp"
+                        android:layout_marginRight="9dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_toLeftOf="@+id/view"
+                        android:layout_toStartOf="@+id/view"
+                        android:background="@drawable/med_chart" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/view"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:orientation="horizontal"
-                        android:layout_alignTop="@+id/waterText"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/change_gloves" />
+
+                    <Button
+                        android:id="@+id/button_info"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignBottom="@id/view"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginRight="74dp"
+                        android:layout_marginEnd="74dp"
+                        android:background="@drawable/change_gloves" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true">
-
-                        <TextView
-                            android:id="@+id/tweezText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/view"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp"
-                            android:layout_weight="1"
-                            android:textAlignment="center"
-                            android:textColor="#000000" />
 
                         <TextView
                             android:id="@+id/waterText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignLeft="@+id/tweezText"
-                            android:layout_alignStart="@+id/tweezText"
-                            android:layout_alignTop="@+id/tweezText"
-                            android:layout_weight="1"
                             android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/tweezText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="#000000"
+                            android:layout_alignBottom="@id/waterText"
+                            />
+
                     </LinearLayout>
 
                 </RelativeLayout>
