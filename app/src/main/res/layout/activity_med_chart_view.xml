@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_med_chart_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="g2p2.woundcare.MedChartView"
+    android:background="@color/white">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="29dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+        android:text="@string/biography"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView14"
+        android:textSize="25sp"
+        android:textColor="#000000"
+        android:theme="@style/textViewStyle"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+            <TextView
+        android:text="@string/textview2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginLeft="165dp"
+        android:layout_marginStart="165dp"
+        android:id="@+id/textView16" />
+
+            <ImageView
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:src="@drawable/n"
+        android:id="@+id/imageView5"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:contentDescription=""
+                tools:ignore="ContentDescription" />
+
+            <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/diabetic"
+        android:textStyle = "bold"
+        android:textColor="#000000"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/textView13"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_toLeftOf="@+id/imageView5"
+        android:layout_toStartOf="@+id/imageView5" />
+
+    <ImageView
+        android:layout_width="25sp"
+        android:layout_height="25sp"
+        android:src="@drawable/y"
+        android:id="@+id/imageView4"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_toRightOf="@+id/textView12"
+        android:layout_toEndOf="@+id/textView12" />
+
+
+            <TextView
+        android:text="@string/lorem"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:textColor="#000000"
+                android:layout_below="@+id/textView16"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                />
+
+            <ImageView
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:src="@drawable/patient_photo"
+                android:id="@+id/imageView3"
+                android:layout_alignTop="@+id/textView15"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/smoking"
+        android:textStyle = "bold"
+        android:textColor="#000000"
+                android:id="@+id/textView12"
+                android:layout_alignBaseline="@+id/textView13"
+                android:layout_alignBottom="@+id/textView13"
+                android:layout_alignLeft="@+id/textView15"
+                android:layout_alignStart="@+id/textView15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_notes"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle = "bold"
+                android:id="@+id/textView17"
+                android:layout_marginTop="22dp"
+                android:layout_below="@+id/imageView4"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text="@string/lorem"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp"
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/textView17"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/imageView4"
+                android:layout_toLeftOf="@+id/imageView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text = "@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_ut_rutrum_rhoncus_vehicula_sed_pellentesque_est_in_volutpat_sagittis_duis_elit_quam_gravida_ut_pulvinar_quis_dignissim_a_massa"
+                android:layout_alignBottom="@+id/textView18"
+                android:layout_alignTop="@+id/textView18"
+                android:layout_alignLeft="@+id/imageView4"
+                android:layout_alignStart="@+id/imageView4"
+                android:id="@+id/textView19" />
+            <ImageView
+                android:layout_width="450sp"
+                android:layout_height="150sp"
+                android:src="@drawable/graph"
+                android:layout_marginTop="31dp"
+                android:layout_below="@+id/textView18"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/imageView6">
+            </ImageView>
+
+            <ImageView
+                android:layout_width="450sp"
+                android:layout_height="150sp"
+                android:src="@drawable/graph2"
+                android:layout_below="@+id/imageView6"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="27dp"
+                android:id="@+id/imageView7">
+
+            </ImageView>
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                android:layout_below="@+id/imageView7"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>
