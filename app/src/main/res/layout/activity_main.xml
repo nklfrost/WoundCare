@@ -60,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
+
         </FrameLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -119,6 +120,11 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/finger" />
+                    <Button
+                        android:id="@+id/fake1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/magglass" />
 
 
                 </GridLayout>
@@ -147,7 +153,16 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@drawable/gauze" />
-
+                    <Button
+                        android:id="@+id/fake2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/hydrogel" />
+                    <Button
+                        android:id="@+id/fake3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/tweezerz" />
 
                 </GridLayout>
 
@@ -207,6 +222,31 @@
                         android:paddingRight="5dp"
                         android:paddingStart="5dp"
                         android:paddingTop="5dp" />
+                    <Button
+                        android:id="@+id/fake4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/tape"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp" />
+                    <Button
+                        android:id="@+id/fake5"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/compression"
+                        android:padding="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingTop="5dp" />
+
 
 
                 </GridLayout>
@@ -226,6 +266,39 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:orientation="horizontal"
+                        android:layout_alignTop="@+id/waterText"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true">
+
+                        <TextView
+                            android:id="@+id/tweezText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/view"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/waterText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/tweezText"
+                            android:layout_alignStart="@+id/tweezText"
+                            android:layout_alignTop="@+id/tweezText"
+                            android:layout_weight="1"
+                            android:textColor="#000000" />
+                    </LinearLayout>
 
                 </RelativeLayout>
             </LinearLayout>

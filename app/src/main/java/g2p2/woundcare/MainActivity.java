@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     public static int phase=1;
     public static int turn=0;
     public static float fibrin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-
+        final TextView tweeze=(TextView) findViewById(R.id.tweezText);
+       final TextView watertxt=(TextView) findViewById(R.id.waterText);
 final LoggingAndUpload upload=new LoggingAndUpload();
 //Observation tools
         final Button tweezer = (Button) findViewById(R.id.button1); //Tweezer
@@ -45,9 +47,22 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==2){
                     handsView.what=0;
+                    tweeze.setText("");
                     LoggingAndUpload.info("disabled tweezers,");
                 } else {
                     handsView.what=2;
+                    switch (MainActivity.level) {
+                        case 1: tweeze.setText("4 CM");
+                            break;
+                        case 2: tweeze.setText("3 CM");
+                            break;
+                        case 3: tweeze.setText("2 CM");
+                            break;
+                        case 4: tweeze.setText("1 CM");
+                            break;
+                        case 5: tweeze.setText("0 CM");
+                            break;
+                    }
                     LoggingAndUpload.info("enabled tweezers,");
                 }
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
@@ -58,7 +73,25 @@ final LoggingAndUpload upload=new LoggingAndUpload();
             public void onClick(View v) {
                 if(handsView.what==22){
                     handsView.what=0;
+                    watertxt.setText("");
                 } else handsView.what=22;
+                switch (MainActivity.level) {
+                    case 1:
+                        watertxt.setText("MOIST");
+                        break;
+                    case 2:
+                        watertxt.setText("MOIST");
+                        break;
+                    case 3:
+                        watertxt.setText("DRY");
+                        break;
+                    case 4:
+                        watertxt.setText("DRY");
+                        break;
+                    case 5:
+                        watertxt.setText("DRY");
+                        break;
+                }
                 findViewById(view).postInvalidate(); //same as handsView - just the actual instance
             }
         });
@@ -120,23 +153,24 @@ final LoggingAndUpload upload=new LoggingAndUpload();
                 TextView bandTex = (TextView) findViewById(R.id.bandagingText);
 
                 switch (phase){
-                    case 1: findViewById(R.id.phase1Buttons).setVisibility(View.VISIBLE);
+                    case 1:
+
+                        findViewById(R.id.phase1Buttons).setVisibility(View.VISIBLE);
                         findViewById(R.id.phase2Buttons).setVisibility(View.GONE);
                             findViewById(R.id.phase3Buttons).setVisibility(View.GONE);
                             obsTex.setBackground(new ColorDrawable(Color.GRAY));
                             cleTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
                             bandTex.setBackground(new ColorDrawable(Color.TRANSPARENT));
-                            final WoundView a = (WoundView) findViewById(R.id.view2);
+                        final WoundView a = (WoundView) findViewById(R.id.view2);
+                        final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+                        final Runnable waitASec = new Runnable() {
+                            @Override
+                            public void run() {
+                                a.reset();
+                            }
+                        };
+                        scheduler.schedule(waitASec,100,TimeUnit.MILLISECONDS);
                             fibrin = a.howMuchFibrin();
-                            startActivity(new Intent(getApplicationContext(),Overlay.class));
-                            final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-                            final Runnable waitASec = new Runnable() {
-                                @Override
-                                public void run() {
-                                    a.reset();
-                                }
-                            };
-                            scheduler.schedule(waitASec,100,TimeUnit.MILLISECONDS);
 
                             break;
                     case 2: Intent i=new Intent(getApplicationContext(), EvalActivity.class);
