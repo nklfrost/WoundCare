@@ -77,13 +77,6 @@ public class WoundView extends View {
             moveTool(e);
         }
         //observation
-        else if(handsView.what==22)
-        {
-            waterCheck(e);//put method here.
-        }
-        else if(handsView.what==2){//tweezers
-            tweezTool(e);
-        }
         //cleaning
         else if(handsView.what==1){//gauze
             gauzeTool(e);
@@ -94,12 +87,7 @@ public class WoundView extends View {
         {
             zincCremeTool(e);//this is the zinc cream
         }
-        else if(handsView.what==3){//absorb
-            absorbComp(e);
-        }
-        else if(handsView.what==5) {//moistur
-        moisturComp(e);
-        }
+
 
 
 
@@ -124,16 +112,7 @@ public class WoundView extends View {
 
         this.invalidate(); //refreshes the view ("this" view).
     }
-    //TWEEZERS
-    public void tweezTool(MotionEvent e){
 
-    }
-    //WATER CHECK
-    void waterCheck(MotionEvent e)
-    {
-        if (wetWound == true) {}
-        else{}
-    }
     //GAUZE
     public void gauzeTool(MotionEvent e){
         if (e.getAction() == 0){ // whenever the hands are put on the screen, it makes a 0,0 vector so the program knows that it shouldn't draw it
@@ -189,14 +168,7 @@ public class WoundView extends View {
         }
         //canvas.drawBitmap(woundClean,0,0,masked);//wow
     }
-    //ABSORBANT
-public void absorbComp(MotionEvent e){
 
-}
-//MOISTURIZING
-    public void moisturComp(MotionEvent e){
-
-    }
 
 
 
@@ -228,7 +200,7 @@ public void absorbComp(MotionEvent e){
     } // returns how much fibrin there is left in a % of the original amount
 
 
-    public void reset(){
+   public void reset(){
         paintXs.clear();
         paintYs.clear();
         X=-300;

@@ -15,15 +15,18 @@ import android.view.View;
  */
 
 public class handsView extends View {
-    Bitmap test,test_2;
+    Bitmap test,test_2,test_3,test_4,test_5,test_6;
     static int what = 0;
 
     public handsView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        test = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.test1),200,200,true);
-        test_2= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.handstemp),200,200,true);
-
+        test = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.gauze),200,200,true);
+        test_2= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.tweez),200,200,true);
+        test_3= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.finger),200,200,true);
+        test_4= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.ketchup),200,200,true);
+        test_5= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.primary_dressing),200,200,true);
+        test_6= Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(),R.drawable.absorbant_dressing),200,200,true);
                 //BitmapFactory.decodeResource(getResources(),R.drawable.handstemp);
     }
 
@@ -44,6 +47,14 @@ public class handsView extends View {
             case 1: canvas.drawBitmap(test,0,0,myStyle);
                 break;
             case 2: canvas.drawBitmap(test_2,0,0,myStyle);
+                break;
+            case 3: canvas.drawBitmap(test_3,0,0,myStyle);
+                break;
+            case 4: canvas.drawBitmap(test_4,0,0,myStyle);
+                break;
+            case 5: canvas.drawBitmap(test_5,0,0,myStyle);
+                break;
+            case 6: canvas.drawBitmap(test_6,0,0,myStyle);
                 break;
         }
         //canvas.drawBitmap(test,0,0,myStyle);
